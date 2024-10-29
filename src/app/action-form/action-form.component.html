@@ -1,0 +1,26 @@
+<h1>Registra una acción</h1>
+
+<label for="username">Batucaner:</label> <br />
+<p-dropdown
+  [options]="(users$ | async) || []"
+  [(ngModel)]="selectedUser"
+  optionLabel="name"
+  placeholder="Selecciona una persona"
+/>
+
+<br /><br />
+
+<label for="username">Día:</label> <br />
+<p-calendar [(ngModel)]="date" />
+
+<br /><br />
+
+<label for="username">Acción:</label> <br />
+<p-dropdown
+  [options]="actionTypes"
+  [(ngModel)]="selectedActionType"
+  placeholder="Selecciona una acción"
+  optionLabel="name"
+/><br /><br />
+
+<p-button (click)="createAction()" label="Registrar acción" />

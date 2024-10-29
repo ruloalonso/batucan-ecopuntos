@@ -1,0 +1,17 @@
+<h1>¿No estás en la lista? ¡Regístrate!</h1>
+
+<label for="username">Nombre:</label> <br />
+<input
+  pInputText
+  id="username"
+  aria-describedby="username-help"
+  [(ngModel)]="name"
+/>
+
+<br />
+<br />
+
+<small>{{ error$ | async }}</small>
+
+<br /><br />
+<p-button (click)="registerUser()" label="Registrar usuario" />
