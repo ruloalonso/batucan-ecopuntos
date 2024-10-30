@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { User } from '../models/user.model';
 import { generateRandomHash } from './core.utils';
+import { mockUsers } from './users.mock';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
+export class UserDataService {
   users = new BehaviorSubject<User[]>([]);
   error = new BehaviorSubject<string>('');
 
@@ -16,12 +17,8 @@ export class UserService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getUsers(): void {
-    this.httpClient
-      .get<User[]>('http://localhost:3000/users')
-      .subscribe((users) => {
-        this.users.next(users);
-      });
+  getUsers(): Observable<User[]> {
+    return this.httpClient.get<User[]>('http://localhost:3000/users');
   }
 
   addUser(name: string): void {
