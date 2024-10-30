@@ -1,6 +1,7 @@
 <h1>Registra una acción</h1>
 
 <label for="username">Batucaner:</label> <br />
+<br />
 <p-dropdown
   [options]="(users$ | async) || []"
   [(ngModel)]="selectedUser"
@@ -10,12 +11,12 @@
 
 <br /><br />
 
-<label for="username">Día:</label> <br />
+<label for="username">Día:</label> <br /><br />
 <p-calendar [(ngModel)]="date" />
 
 <br /><br />
 
-<label for="username">Acción:</label> <br />
+<label for="username">Acción:</label> <br /><br />
 <p-dropdown
   [options]="actionTypes"
   [(ngModel)]="selectedActionType"
