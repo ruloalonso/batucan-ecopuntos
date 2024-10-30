@@ -24,14 +24,27 @@ export class UserService {
       });
   }
 
+  createUser(name: string): void {
+    this.httpClient
+      .post<User>('http://localhost:3000/users', { name })
+      .subscribe((user) => {
+        const users = this.users.getValue();
+        this.users.next([...users, user]);
+      });
+  }
+
   addUser(name: string): void {
     const users = this.users.getValue();
     if (users.some((user) => user.name === name)) {
       this.error.next('El usuario ya existe');
     } else {
-      const user: User = { id: generateRandomHash(), name };
-      this.users.next([...users, user]);
-      this.error.next('');
+      this.httpClient
+        .post<User>('http://localhost:3000/users', { name })
+        .subscribe((user) => {
+          const users = this.users.getValue();
+          this.users.next([...users, user]);
+          this.error.next('');
+        });
     }
   }
 }

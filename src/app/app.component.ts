@@ -6,7 +6,7 @@ import { UserListComponent } from './user-list/user-list.component';
 import { PrimeNGConfig } from 'primeng/api';
 import { UserService } from './services/user.service';
 import { ActionService } from './services/action.service';
-import { ActionListComponent } from "./action-list/action-list.component";
+import { ActionListComponent } from './action-list/action-list.component';
 
 @Component({
   selector: 'app-root',
@@ -16,8 +16,8 @@ import { ActionListComponent } from "./action-list/action-list.component";
     ActionFormComponent,
     UserFormComponent,
     UserListComponent,
-    ActionListComponent
-],
+    ActionListComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.getUsers();
-    this.actionService.loadActions();
+    this.actionService.getActions();
     this.primengConfig.ripple = true;
   }
 }

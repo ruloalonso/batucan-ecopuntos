@@ -26,7 +26,7 @@ export class UserDataService {
     if (users.some((user) => user.name === name)) {
       this.error.next('El usuario ya existe');
     } else {
-      const user: User = { id: generateRandomHash(), name };
+      const user: User = { _id: generateRandomHash(), name };
       this.users.next([...users, user]);
       this.error.next('');
     }

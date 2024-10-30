@@ -5,6 +5,7 @@ import { ActionType } from '../models/action.model';
 import { mockActions } from './actions.mock';
 import { generateRandomHash } from './core.utils';
 import { User } from '../models/user.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -13,27 +14,34 @@ export class ActionService {
   actions = new BehaviorSubject<Action[]>([]);
   actions$ = this.actions.asObservable();
 
-  constructor() {}
+  constructor(private httpClient: HttpClient) {}
 
-  loadActions(): void {
-    this.actions.next(mockActions);
+  getActions(): void {
+    this.httpClient
+      .get<Action[]>('http://localhost:3000/actions')
+      .subscribe((actions) => {
+        this.actions.next(actions);
+      });
   }
 
   createAction(user: User, date: Date, type: ActionType): void {
-    const actions = this.actions.getValue();
-    const action: Action = {
-      id: generateRandomHash(),
-      user,
+    const newAction = {
+      userId: user._id,
       date,
-      type,
+      actionTypeId: type._id,
     };
-    this.actions.next([...actions, action]);
+    this.httpClient
+      .post<Action>('http://localhost:3000/actions', newAction)
+      .subscribe((action) => {
+        const actions = this.actions.getValue();
+        this.actions.next([...actions, action]);
+      });
   }
 
   getPointsByUserId(userId: string): number {
     const actions = this.actions.getValue();
     const points = actions
-      .filter((action) => action.user.id === userId)
+      .filter((action) => action.user?._id === userId)
       .reduce(
         (accumulator, currentValue) => accumulator + currentValue.type.points,
         0

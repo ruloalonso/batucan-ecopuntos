@@ -1,20 +1,19 @@
 import { User } from "./user.model";
 
 export interface ActionType {
-  id: string;
+  _id: string;
   name: string;
   points: number;
 }
 
 export interface ActionCreate {
-  id: string;
   userId: string;
-  actionTypeId: string;
   date: Date;
+  actionType_id: string;
 }
 
 export interface Action {
-  id: string;
+  _id: string;
   user: User;
   type: ActionType;
   date: Date;

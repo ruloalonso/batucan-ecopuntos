@@ -22,6 +22,6 @@ export class UserListComponent {
   users$ = this.userService.users$;
 
   getUserPonts(user: User): number {
-    return this.actionService.getPointsByUserId(user.id);
+    return this.actionService.getPointsByUserId(user._id);
   }
 }
