@@ -1,12 +1,7 @@
 <h1>Únete a la fiesta</h1>
 
-<label for="username">¿Cómo te llamamos en la batu?: </label> <br /><br />
-<input
-  pInputText
-  id="username"
-  aria-describedby="username-help"
-  [(ngModel)]="name"
-/>
+<label for="name">¿Cómo te llamamos en la batu?: </label> <br /><br />
+<input pInputText id="name" [(ngModel)]="name" autocomplete="off" />
 
 <br />
 <br />
@@ -14,4 +9,7 @@
 <small>{{ error$ | async }}</small>
 
 <br /><br />
-<p-button (click)="registerUser()" label="Unirse a la fiesta de los ecopuntos" />
+<p-button
+  (click)="registerUser()"
+  label="Unirse a la fiesta de los ecopuntos"
+/>
