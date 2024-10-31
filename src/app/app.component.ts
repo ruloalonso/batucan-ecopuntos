@@ -8,6 +8,7 @@ import { UserService } from './services/user.service';
 import { ActionService } from './services/action.service';
 import { ActionListComponent } from './action-list/action-list.component';
 import { ActionTypeService } from './services/action-type.service';
+import { ActionTypeFormComponent } from "./action-type-form/action-type-form.component";
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,8 @@ import { ActionTypeService } from './services/action-type.service';
     UserFormComponent,
     UserListComponent,
     ActionListComponent,
-  ],
+    ActionTypeFormComponent
+],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

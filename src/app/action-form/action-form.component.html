@@ -9,19 +9,33 @@
   placeholder="Selecciona una persona"
 />
 
+<p>
+  ¿No estás en la lista?
+  <a
+    style="text-decoration: underline; cursor: pointer"
+    (click)="goToUserForm()"
+  >
+    Regístrate aquí</a
+  >
+</p>
+
+<br />
+
+<label for="username">Acción:</label> <br /><br />
+<p-dropdown
+  [options]="(actionTypes$ | async) || []"
+  [(ngModel)]="selectedActionType"
+  placeholder="Selecciona una acción"
+  optionLabel="name"
+/>
+<span *ngIf="selectedActionType"
+  >&nbsp;&nbsp;{{ selectedActionType.points }} puntos
+</span>
 <br /><br />
 
 <label for="username">Día:</label> <br /><br />
 <p-calendar [(ngModel)]="date" />
 
 <br /><br />
-
-<label for="username">Acción:</label> <br /><br />
-<p-dropdown
-  [options]="actionTypes"
-  [(ngModel)]="selectedActionType"
-  placeholder="Selecciona una acción"
-  optionLabel="name"
-/><br /><br />
 
 <p-button (click)="createAction()" label="Registrar acción" />

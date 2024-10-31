@@ -1,0 +1,21 @@
+<h1>Registra un tipo de acción</h1>
+
+<p>Por ejemplo: "Ir a ensayar en bici".</p>
+
+<label for="name">Nombre del tipo de acción:</label> <br />
+<input pInputText id="name" aria-describedby="name-help" [(ngModel)]="name" />
+
+<br /><br />
+
+<label for="points">Ecopuntos:</label> <br /><br />
+<p-inputNumber
+  [(ngModel)]="points"
+  inputId="minmax"
+  mode="decimal"
+  [min]="0"
+  [max]="100"
+/>
+
+<br /><br />
+
+<p-button (click)="createActionType()" label="Crear tipo de acción" />

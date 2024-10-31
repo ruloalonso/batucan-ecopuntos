@@ -7,8 +7,9 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
 import { ActionType } from '../models/action.model';
-import { actionTypes } from '../models/action-types';
 import { ActionService } from '../services/action.service';
+import { ActionTypeService } from '../services/action-type.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-action-form',
@@ -26,11 +27,13 @@ import { ActionService } from '../services/action.service';
 export class ActionFormComponent {
   constructor(
     private userService: UserService,
-    private actionService: ActionService
+    private actionService: ActionService,
+    private actionTypeService: ActionTypeService,
+    private router: Router
   ) {}
 
   users$ = this.userService.users$;
-  actionTypes = actionTypes;
+  actionTypes$ = this.actionTypeService.actionTypes$;
 
   date: Date | undefined;
   selectedUser: User | undefined;
@@ -47,5 +50,9 @@ export class ActionFormComponent {
       this.date = undefined;
       this.selectedActionType = undefined;
     }
+  }
+
+  goToUserForm(): void {
+    this.router.navigate(['register']);
   }
 }

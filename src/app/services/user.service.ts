@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, tap, throwError } from 'rxjs';
 import { User } from '../models/user.model';
 import { HttpClient } from '@angular/common/http';
 
@@ -23,20 +23,23 @@ export class UserService {
     });
   }
 
-  createUser(name: string): void {
+  createUser(name: string): Observable<User> {
     const users = this.users.getValue();
     if (users.some((user) => user.name === name)) {
       this.error.next('El usuario ya existe');
+      return throwError(() => new Error('El usuario ya existe.'));
     } else {
-      this.httpClient
+      return this.httpClient
         .post<User>(this.apiUrl, {
           name,
         })
-        .subscribe((user) => {
-          const users = this.users.getValue();
-          this.users.next([...users, user]);
-          this.error.next('');
-        });
+        .pipe(
+          tap((user) => {
+            const users = this.users.getValue();
+            this.users.next([...users, user]);
+            this.error.next('');
+          })
+        );
     }
   }
 }
