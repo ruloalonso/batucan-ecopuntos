@@ -12,8 +12,7 @@ export class ActionService {
   actions = new BehaviorSubject<Action[]>([]);
   actions$ = this.actions.asObservable();
 
-  private apiUrl = 'http://localhost:3000/actions';
-  // apiUrl = 'https://batucan-ecopuntos-api.vercel.app/actions';
+  private apiUrl = 'https://batucan-ecopuntos-api.vercel.app/actions';
 
   constructor(private httpClient: HttpClient) {}
 

@@ -7,13 +7,13 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class UserService {
-  private apiUrl = 'http://localhost:3000/users';
-  // private apiUrl = 'https://batucan-ecopuntos-api.vercel.app/users';
   users = new BehaviorSubject<User[]>([]);
   error = new BehaviorSubject<string>('');
-
+  
   users$ = this.users.asObservable();
   error$ = this.error.asObservable();
+
+  private apiUrl = 'https://batucan-ecopuntos-api.vercel.app/users';
 
   constructor(private httpClient: HttpClient) {}
 
