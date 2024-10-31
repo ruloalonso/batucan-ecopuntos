@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Action } from '../models/action.model';
-import { ActionType } from '../models/action.model';
-import { User } from '../models/user.model';
+import { ActionType } from '../models/action-type.model';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -23,8 +21,8 @@ export class ActionTypeService {
     });
   }
 
-  createActionType(name: string, points: number): void {
-    const newActionType = { name, points };
+  createActionType(description: string, points: number): void {
+    const newActionType = { description, points };
     this.httpClient
       .post<ActionType>(this.apiUrl, newActionType)
       .subscribe((actionType) => {

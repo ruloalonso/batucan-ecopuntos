@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Action } from '../models/action.model';
-import { ActionType } from '../models/action.model';
+import { ActionType } from '../models/action-type.model';
 import { User } from '../models/user.model';
 import { HttpClient } from '@angular/common/http';
 

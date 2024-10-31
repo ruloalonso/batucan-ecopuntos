@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
-import { ActionType } from '../models/action.model';
+import { ActionType } from '../models/action-type.model';
 import { ActionService } from '../services/action.service';
 import { ActionTypeService } from '../services/action-type.service';
 import { Router } from '@angular/router';
@@ -53,6 +53,6 @@ export class ActionFormComponent {
   }
 
   goToUserForm(): void {
-    this.router.navigate(['register']);
+    this.router.navigate(['hola']);
   }
 }

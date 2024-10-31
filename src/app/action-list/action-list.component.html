@@ -8,17 +8,17 @@
 >
   <ng-template pTemplate="header">
     <tr>
-      <th pSortableColumn="name">Batucaner <p-sortIcon field="name" /></th>
       <th pSortableColumn="date">Fecha <p-sortIcon field="date" /></th>
-      <th>Acción</th>
+      <th pSortableColumn="name">Batucaner <p-sortIcon field="name" /></th>
+      <th>Tipo</th>
       <th>Ecopuntos</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-action>
     <tr>
-      <td>{{ action.user?.name }}</td>
       <td>{{ action.date | date : "mediumDate" }}</td>
-      <td>{{ action.type?.name }}</td>
+      <td>{{ action.user?.name }}</td>
+      <td>{{ action.type?.description }}</td>
       <td>{{ action.type?.points }}</td>
     </tr>
   </ng-template>

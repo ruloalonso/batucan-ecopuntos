@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { ActionFormComponent } from './action-form/action-form.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { UserListComponent } from './user-list/user-list.component';
@@ -8,7 +8,7 @@ import { UserService } from './services/user.service';
 import { ActionService } from './services/action.service';
 import { ActionListComponent } from './action-list/action-list.component';
 import { ActionTypeService } from './services/action-type.service';
-import { ActionTypeFormComponent } from "./action-type-form/action-type-form.component";
+import { ActionTypeFormComponent } from './action-type-form/action-type-form.component';
 
 @Component({
   selector: 'app-root',
@@ -19,8 +19,8 @@ import { ActionTypeFormComponent } from "./action-type-form/action-type-form.com
     UserFormComponent,
     UserListComponent,
     ActionListComponent,
-    ActionTypeFormComponent
-],
+    ActionTypeFormComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -31,7 +31,8 @@ export class AppComponent implements OnInit {
     private userService: UserService,
     private actionService: ActionService,
     private actionTypeService: ActionTypeService,
-    private primengConfig: PrimeNGConfig
+    private primengConfig: PrimeNGConfig,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -39,5 +40,9 @@ export class AppComponent implements OnInit {
     this.actionService.getActions();
     this.actionTypeService.getActionTypes();
     this.primengConfig.ripple = true;
+  }
+
+  goHome(): void {
+    this.router.navigate(['/']);
   }
 }

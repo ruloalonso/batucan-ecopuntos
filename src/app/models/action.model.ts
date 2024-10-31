@@ -1,10 +1,5 @@
-import { User } from "./user.model";
-
-export interface ActionType {
-  _id: string;
-  name: string;
-  points: number;
-}
+import { ActionType } from './action-type.model';
+import { User } from './user.model';
 
 export interface ActionCreate {
   userId: string;

@@ -3,7 +3,6 @@ import { FormsModule } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
-import { actionTypes } from '../models/action-types';
 import { ActionTypeService } from '../services/action-type.service';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
@@ -28,7 +27,6 @@ export class ActionTypeFormComponent {
   ) {}
 
   users$ = this.userService.users$;
-  actionTypes = actionTypes;
 
   name: string | undefined;
   points: number | undefined;

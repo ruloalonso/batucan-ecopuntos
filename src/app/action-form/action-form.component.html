@@ -21,12 +21,12 @@
 
 <br />
 
-<label for="username">Acción:</label> <br /><br />
+<label for="username">Tipo de acción:</label> <br /><br />
 <p-dropdown
   [options]="(actionTypes$ | async) || []"
   [(ngModel)]="selectedActionType"
-  placeholder="Selecciona una acción"
-  optionLabel="name"
+  placeholder="Selecciona un tipo de acción"
+  optionLabel="description"
 />
 <span *ngIf="selectedActionType"
   >&nbsp;&nbsp;{{ selectedActionType.points }} puntos
