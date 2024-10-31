@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, throwError } from 'rxjs';
 import { User } from '../models/user.model';
-import { generateRandomHash } from './core.utils';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -18,7 +17,7 @@ export class UserService {
 
   getUsers(): void {
     this.httpClient
-      .get<User[]>('http://localhost:3000/users')
+      .get<User[]>('https://batucan-ecopuntos-api.vercel.app/users')
       .subscribe((users) => {
         this.users.next(users);
       });
@@ -26,7 +25,9 @@ export class UserService {
 
   createUser(name: string): void {
     this.httpClient
-      .post<User>('http://localhost:3000/users', { name })
+      .post<User>('https://batucan-ecopuntos-api.vercel.app/users', {
+        name,
+      })
       .subscribe((user) => {
         const users = this.users.getValue();
         this.users.next([...users, user]);
@@ -39,7 +40,9 @@ export class UserService {
       this.error.next('El usuario ya existe');
     } else {
       this.httpClient
-        .post<User>('http://localhost:3000/users', { name })
+        .post<User>('https://batucan-ecopuntos-api.vercel.app/users', {
+          name,
+        })
         .subscribe((user) => {
           const users = this.users.getValue();
           this.users.next([...users, user]);

@@ -18,7 +18,7 @@ export class ActionService {
 
   getActions(): void {
     this.httpClient
-      .get<Action[]>('http://localhost:3000/actions')
+      .get<Action[]>('https://batucan-ecopuntos-api.vercel.app/actions')
       .subscribe((actions) => {
         this.actions.next(actions);
       });
@@ -31,7 +31,7 @@ export class ActionService {
       actionTypeId: type._id,
     };
     this.httpClient
-      .post<Action>('http://localhost:3000/actions', newAction)
+      .post<Action>('https://batucan-ecopuntos-api.vercel.app/actions', newAction)
       .subscribe((action) => {
         const actions = this.actions.getValue();
         this.actions.next([...actions, action]);

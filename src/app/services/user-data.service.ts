@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { User } from '../models/user.model';
 import { generateRandomHash } from './core.utils';
-import { mockUsers } from './users.mock';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -18,7 +17,7 @@ export class UserDataService {
   constructor(private httpClient: HttpClient) {}
 
   getUsers(): Observable<User[]> {
-    return this.httpClient.get<User[]>('http://localhost:3000/users');
+    return this.httpClient.get<User[]>('https://batucan-ecopuntos-api.vercel.app/users');
   }
 
   addUser(name: string): void {
