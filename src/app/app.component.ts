@@ -7,6 +7,7 @@ import { PrimeNGConfig } from 'primeng/api';
 import { UserService } from './services/user.service';
 import { ActionService } from './services/action.service';
 import { ActionListComponent } from './action-list/action-list.component';
+import { ActionTypeService } from './services/action-type.service';
 
 @Component({
   selector: 'app-root',
@@ -27,12 +28,14 @@ export class AppComponent implements OnInit {
   constructor(
     private userService: UserService,
     private actionService: ActionService,
+    private actionTypeService: ActionTypeService,
     private primengConfig: PrimeNGConfig
   ) {}
 
   ngOnInit(): void {
     this.userService.getUsers();
     this.actionService.getActions();
+    this.actionTypeService.getActionTypes();
     this.primengConfig.ripple = true;
   }
 }
