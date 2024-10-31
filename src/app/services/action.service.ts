@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { Action } from '../models/action.model';
 import { ActionType } from '../models/action.model';
-import { mockActions } from './actions.mock';
-import { generateRandomHash } from './core.utils';
 import { User } from '../models/user.model';
 import { HttpClient } from '@angular/common/http';
 
@@ -14,14 +12,15 @@ export class ActionService {
   actions = new BehaviorSubject<Action[]>([]);
   actions$ = this.actions.asObservable();
 
+  private apiUrl = 'http://localhost:3000/actions';
+  // apiUrl = 'https://batucan-ecopuntos-api.vercel.app/actions';
+
   constructor(private httpClient: HttpClient) {}
 
   getActions(): void {
-    this.httpClient
-      .get<Action[]>('https://batucan-ecopuntos-api.vercel.app/actions')
-      .subscribe((actions) => {
-        this.actions.next(actions);
-      });
+    this.httpClient.get<Action[]>(this.apiUrl).subscribe((actions) => {
+      this.actions.next(actions);
+    });
   }
 
   createAction(user: User, date: Date, type: ActionType): void {
@@ -30,12 +29,10 @@ export class ActionService {
       date,
       actionTypeId: type._id,
     };
-    this.httpClient
-      .post<Action>('https://batucan-ecopuntos-api.vercel.app/actions', newAction)
-      .subscribe((action) => {
-        const actions = this.actions.getValue();
-        this.actions.next([...actions, action]);
-      });
+    this.httpClient.post<Action>(this.apiUrl, newAction).subscribe((action) => {
+      const actions = this.actions.getValue();
+      this.actions.next([...actions, action]);
+    });
   }
 
   getPointsByUserId(userId: string): number {

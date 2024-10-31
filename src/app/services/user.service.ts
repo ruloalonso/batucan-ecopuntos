@@ -7,6 +7,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class UserService {
+  private apiUrl = 'http://localhost:3000/users';
+  // private apiUrl = 'https://batucan-ecopuntos-api.vercel.app/users';
   users = new BehaviorSubject<User[]>([]);
   error = new BehaviorSubject<string>('');
 
@@ -16,31 +18,18 @@ export class UserService {
   constructor(private httpClient: HttpClient) {}
 
   getUsers(): void {
-    this.httpClient
-      .get<User[]>('https://batucan-ecopuntos-api.vercel.app/users')
-      .subscribe((users) => {
-        this.users.next(users);
-      });
+    this.httpClient.get<User[]>(this.apiUrl).subscribe((users) => {
+      this.users.next(users);
+    });
   }
 
   createUser(name: string): void {
-    this.httpClient
-      .post<User>('https://batucan-ecopuntos-api.vercel.app/users', {
-        name,
-      })
-      .subscribe((user) => {
-        const users = this.users.getValue();
-        this.users.next([...users, user]);
-      });
-  }
-
-  addUser(name: string): void {
     const users = this.users.getValue();
     if (users.some((user) => user.name === name)) {
       this.error.next('El usuario ya existe');
     } else {
       this.httpClient
-        .post<User>('https://batucan-ecopuntos-api.vercel.app/users', {
+        .post<User>(this.apiUrl, {
           name,
         })
         .subscribe((user) => {

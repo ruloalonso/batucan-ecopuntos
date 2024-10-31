@@ -21,7 +21,7 @@ export class UserFormComponent {
 
   registerUser(): void {
     if (this.name) {
-      this.userService.addUser(this.name);
+      this.userService.createUser(this.name);
     }
     this.name = '';
   }
