@@ -41,14 +41,19 @@ export class ActionFormComponent {
 
   createAction(): void {
     if (this.selectedUser && this.date && this.selectedActionType) {
-      this.actionService.createAction(
-        this.selectedUser,
-        this.date,
-        this.selectedActionType
-      );
-      this.selectedUser = undefined;
-      this.date = undefined;
-      this.selectedActionType = undefined;
+      this.actionService
+        .createAction(this.selectedUser, this.date, this.selectedActionType)
+        .subscribe((action) => {
+          if (this.selectedUser && this.selectedActionType) {
+            this.userService.addPoints(
+              this.selectedUser,
+              this.selectedActionType.points
+            );
+          }
+          this.selectedUser = undefined;
+          this.date = undefined;
+          this.selectedActionType = undefined;
+        });
     }
   }
 

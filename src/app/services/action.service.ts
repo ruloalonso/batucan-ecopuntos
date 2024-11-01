@@ -22,17 +22,19 @@ export class ActionService {
     });
   }
 
-  createAction(user: User, date: Date, type: ActionType): void {
+  createAction(user: User, date: Date, type: ActionType): Observable<Action> {
     const newAction = {
       userId: user._id,
       date,
       description: type.description,
       points: type.points,
     };
-    this.httpClient.post<Action>(this.apiUrl, newAction).subscribe((action) => {
-      const actions = this.actions.getValue();
-      this.actions.next([...actions, action]);
-    });
+    return this.httpClient.post<Action>(this.apiUrl, newAction).pipe(
+      tap((action) => {
+        const actions = this.actions.getValue();
+        this.actions.next([...actions, action]);
+      })
+    );
   }
 
   deleteAction(actionId: string): Observable<void> {

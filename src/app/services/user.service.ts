@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class UserService {
   users = new BehaviorSubject<User[]>([]);
   error = new BehaviorSubject<string>('');
-  
+
   users$ = this.users.asObservable();
   error$ = this.error.asObservable();
 
@@ -41,5 +41,14 @@ export class UserService {
           })
         );
     }
+  }
+
+  addPoints(selectedUser: User, points: number): void {
+    const users = this.users.getValue();
+    const foundUser = users.find((user) => user._id === selectedUser._id);
+    if (foundUser) {
+      foundUser.points += points;
+    }
+    this.users.next(users);
   }
 }
