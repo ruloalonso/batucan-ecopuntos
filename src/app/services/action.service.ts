@@ -34,15 +34,4 @@ export class ActionService {
       this.actions.next([...actions, action]);
     });
   }
-
-  getPointsByUserId(userId: string): number {
-    const actions = this.actions.getValue();
-    const points = actions
-      .filter((action) => action.user?._id === userId)
-      .reduce(
-        (accumulator, currentValue) => accumulator + currentValue.points,
-        0
-      );
-    return points;
-  }
 }
