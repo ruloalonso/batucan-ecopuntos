@@ -9,9 +9,11 @@
   <ng-template pTemplate="header">
     <tr>
       <th pSortableColumn="date">Fecha <p-sortIcon field="date" /></th>
-      <th pSortableColumn="name">Batucaner <p-sortIcon field="name" /></th>
-      <th>Tipo</th>
-      <th>Ecopuntos</th>
+      <th pSortableColumn="user.name">Batucaner <p-sortIcon field="user.name" /></th>
+      <th pSortableColumn="description">
+        Tipo <p-sortIcon field="description" />
+      </th>
+      <th pSortableColumn="points">Ecopuntos <p-sortIcon field="points" /></th>
       <th></th>
     </tr>
   </ng-template>

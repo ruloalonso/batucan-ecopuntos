@@ -3,7 +3,8 @@
 <p-table
   [value]="(users$ | async) || []"
   [tableStyle]="{ 'min-width': '50rem' }"
-  sortField="name"
+  sortField="points"
+  [sortOrder]="-1"
 >
   <ng-template pTemplate="header">
     <tr>
