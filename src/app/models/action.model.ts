@@ -10,6 +10,7 @@ export interface ActionCreate {
 export interface Action {
   _id: string;
   user: User;
-  type: ActionType;
   date: Date;
+  description: string;
+  points: number;
 }

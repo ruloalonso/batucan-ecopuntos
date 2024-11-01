@@ -12,7 +12,7 @@ export class ActionService {
   actions = new BehaviorSubject<Action[]>([]);
   actions$ = this.actions.asObservable();
 
-  private apiUrl = 'https://batucan-ecopuntos-api.vercel.app/actions';
+  private apiUrl = 'http://localhost:3000/actions';
 
   constructor(private httpClient: HttpClient) {}
 
@@ -26,7 +26,8 @@ export class ActionService {
     const newAction = {
       userId: user._id,
       date,
-      actionTypeId: type._id,
+      description: type.description,
+      points: type.points,
     };
     this.httpClient.post<Action>(this.apiUrl, newAction).subscribe((action) => {
       const actions = this.actions.getValue();
@@ -39,7 +40,7 @@ export class ActionService {
     const points = actions
       .filter((action) => action.user?._id === userId)
       .reduce(
-        (accumulator, currentValue) => accumulator + currentValue.type.points,
+        (accumulator, currentValue) => accumulator + currentValue.points,
         0
       );
     return points;
