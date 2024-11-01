@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Action } from '../models/action.model';
 import { ActionType } from '../models/action-type.model';
 import { User } from '../models/user.model';
@@ -33,5 +33,15 @@ export class ActionService {
       const actions = this.actions.getValue();
       this.actions.next([...actions, action]);
     });
+  }
+
+  deleteAction(actionId: string): Observable<void> {
+    const apiUrl = this.apiUrl + '/' + actionId;
+    return this.httpClient.delete<void>(apiUrl).pipe(
+      tap(() => {
+        const actions = this.actions.getValue();
+        this.actions.next(actions.filter((action) => action._id !== actionId));
+      })
+    );
   }
 }
