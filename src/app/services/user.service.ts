@@ -13,7 +13,7 @@ export class UserService {
   users$ = this.users.asObservable();
   error$ = this.error.asObservable();
 
-  private apiUrl = 'http://localhost:3000/users';
+  private apiUrl = 'https://batucan-ecopuntos-api.vercel.app/users';
 
   constructor(private httpClient: HttpClient) {}
 
