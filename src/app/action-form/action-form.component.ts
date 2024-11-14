@@ -36,6 +36,7 @@ export class ActionFormComponent {
   actionTypes$ = this.actionTypeService.actionTypes$;
 
   date: Date | undefined;
+  today = new Date();
   selectedUser: User | undefined;
   selectedActionType: ActionType | undefined;
 
@@ -43,7 +44,7 @@ export class ActionFormComponent {
     if (this.selectedUser && this.date && this.selectedActionType) {
       this.actionService
         .createAction(this.selectedUser, this.date, this.selectedActionType)
-        .subscribe((action) => {
+        .subscribe(() => {
           if (this.selectedUser && this.selectedActionType) {
             this.userService.addPoints(
               this.selectedUser,

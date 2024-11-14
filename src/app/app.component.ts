@@ -46,8 +46,8 @@ export class AppComponent implements OnInit {
     this.userService.getUsers();
     this.actionService.getActions();
     this.actionTypeService.getActionTypes();
-    this.primengConfig.ripple = true;
     this.subscribeToInitialCalls();
+    this.configurePrimeNG();
   }
 
   private subscribeToInitialCalls(): void {
@@ -61,5 +61,20 @@ export class AppComponent implements OnInit {
 
   goHome(): void {
     this.router.navigate(['/']);
+  }
+
+  configurePrimeNG(): void {
+    this.primengConfig.ripple = true;
+    this.primengConfig.setTranslation({
+      dayNames: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
+      dayNamesShort: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
+      dayNamesMin: ["D", "L", "M", "X", "J", "V", "S"],
+      monthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+      monthNamesShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+      today: "Hoy",
+      clear: "Limpiar",
+      weekHeader: "Sem",
+      firstDayOfWeek: 1 // Comienza la semana en lunes
+    });
   }
 }
