@@ -9,6 +9,8 @@ import { ActionService } from './services/action.service';
 import { ActionListComponent } from './action-list/action-list.component';
 import { ActionTypeService } from './services/action-type.service';
 import { ActionTypeFormComponent } from './action-type-form/action-type-form.component';
+import { CommonModule } from '@angular/common';
+import { combineLatest, filter, take } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -20,12 +22,17 @@ import { ActionTypeFormComponent } from './action-type-form/action-type-form.com
     UserListComponent,
     ActionListComponent,
     ActionTypeFormComponent,
+    CommonModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
   title = 'ecopuntos';
+  isLoading = true;
+  users$ = this.userService.users$;
+  actions$ = this.actionService.actions$;
+  actionTypes$ = this.actionTypeService.actionTypes$;
 
   constructor(
     private userService: UserService,
@@ -40,6 +47,16 @@ export class AppComponent implements OnInit {
     this.actionService.getActions();
     this.actionTypeService.getActionTypes();
     this.primengConfig.ripple = true;
+    this.subscribeToInitialCalls();
+  }
+
+  private subscribeToInitialCalls(): void {
+    combineLatest([this.users$, this.actions$, this.actionTypes$])
+      .pipe(
+        filter((values) => values.every((value) => value.length)),
+        take(1)
+      )
+      .subscribe(() => (this.isLoading = false));
   }
 
   goHome(): void {

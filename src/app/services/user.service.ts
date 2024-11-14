@@ -7,8 +7,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class UserService {
-  users = new BehaviorSubject<User[]>([]);
-  error = new BehaviorSubject<string>('');
+  private users = new BehaviorSubject<User[]>([]);
+  private error = new BehaviorSubject<string>('');
 
   users$ = this.users.asObservable();
   error$ = this.error.asObservable();

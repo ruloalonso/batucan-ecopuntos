@@ -1,36 +1,13 @@
-<h1 style="cursor: pointer;" (click)="goHome()">BATUCAN ECOPUNTOS</h1>
+<div *ngIf="isLoading" class="loading-screen">
+  <img src="../assets/loading.png" alt="App Logo" />
+</div>
 
-<router-outlet></router-outlet>
+<ng-container *ngIf="!isLoading">
+  <h1 style="cursor: pointer" (click)="goHome()">BATUCAN ECOPUNTOS</h1>
 
-<!-- <app-action-form></app-action-form>
+  <router-outlet></router-outlet>
 
-<br /><br />
+  <br /><br /><br /><br /><br />
 
-<app-user-list></app-user-list>
-
-<br /><br />
-
-<app-user-form></app-user-form>
-
-<br /><br /><br /><br />
-
-<br /><br /><br /><br />
-
-<app-action-list></app-action-list>
-
-<br /><br /><br /><br />
-
-<br /><br /><br /><br />
-
-
-
-<br /><br /><br /><br />
-<br /><br /><br /><br />
-
-<app-action-type-form></app-action-type-form>
-
-<br /><br /><br /><br /> -->
-
-<br /><br /><br /><br /><br />
-
-<small>Hecho con 💚 por Batucán</small>
+  <small>Hecho con 💚 por Batucán</small>
+</ng-container>
