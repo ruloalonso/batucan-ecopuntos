@@ -1,19 +1,22 @@
-<h1>Cómo va la cosa hasta ahora</h1>
+<h1>Cómo va la cosa</h1>
 
 <p-table
   [value]="(users$ | async) || []"
-  [tableStyle]="{ 'min-width': '50rem' }"
+  [tableStyle]="{ 'min-width': '90vw' }"
   sortField="points"
   [sortOrder]="-1"
 >
   <ng-template pTemplate="header">
     <tr>
+      <!-- TODO: Implement position system -->
+      <!-- <th>#</th> -->
       <th pSortableColumn="name">Nombre <p-sortIcon field="name" /></th>
       <th pSortableColumn="points">Ecopuntos <p-sortIcon field="points" /></th>
     </tr>
   </ng-template>
-  <ng-template pTemplate="body" let-user>
+  <ng-template pTemplate="body" let-user let-i="rowIndex">
     <tr>
+      <!-- <td>{{ i + 1 }}</td> -->
       <td>{{ user.name }}</td>
       <td>{{ user.points }}</td>
     </tr>

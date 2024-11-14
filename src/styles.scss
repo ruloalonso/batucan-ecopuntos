@@ -1,3 +1,17 @@
 @import "primeng/resources/themes/lara-dark-purple/theme.css";
 @import "primeng/resources/primeng.css";
 @import "primeicons/primeicons.css";
+@import "./app/variables.scss";
+
+.p-button {
+  background-color: $primary-color;
+  color: $secondary-color;
+}
+
+h1 {
+  color: $secondary-color;
+}
+
+a {
+  color: $primary-color;
+}

@@ -5,24 +5,27 @@
   [tableStyle]="{ 'min-width': '50rem' }"
   sortField="date"
   [sortOrder]="-1"
+  styleClass="p-datatable-sm"
 >
   <ng-template pTemplate="header">
     <tr>
       <th pSortableColumn="date">Fecha <p-sortIcon field="date" /></th>
-      <th pSortableColumn="user.name">Batucaner <p-sortIcon field="user.name" /></th>
+      <th pSortableColumn="user.name">
+        Batucán <p-sortIcon field="user.name" />
+      </th>
+      <th pSortableColumn="points">Puntos <p-sortIcon field="points" /></th>
       <th pSortableColumn="description">
         Tipo <p-sortIcon field="description" />
       </th>
-      <th pSortableColumn="points">Ecopuntos <p-sortIcon field="points" /></th>
       <th></th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-action>
     <tr>
-      <td>{{ action.date | date : "mediumDate" }}</td>
+      <td>{{ action.date | date : "d MMM" }}</td>
       <td>{{ action.user?.name }}</td>
-      <td>{{ action.description }}</td>
       <td>{{ action.points }}</td>
+      <td>{{ action.description }}</td>
       <td>
         <button
           type="button"

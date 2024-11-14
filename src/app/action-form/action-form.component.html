@@ -1,12 +1,12 @@
 <h1>Registra una acción</h1>
 
-<label for="username">Batucaner:</label> <br />
+<label for="username">Batucán:</label> <br />
 <br />
 <p-dropdown
   [options]="(users$ | async) || []"
   [(ngModel)]="selectedUser"
   optionLabel="name"
-  placeholder="Selecciona una persona"
+  placeholder="Selecciona un batucán"
 />
 
 <p>
