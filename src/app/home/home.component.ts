@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   constructor(private meta: Meta, private title: Title) {}
 
   ngOnInit(): void {
-    this.title.setTitle('Título de tu web app');
+    this.title.setTitle('BATUCÁN Ecopuntos');
     this.meta.addTags([
       {
         name: 'description',

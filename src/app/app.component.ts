@@ -52,10 +52,7 @@ export class AppComponent implements OnInit {
 
   private subscribeToInitialCalls(): void {
     combineLatest([this.users$, this.actions$, this.actionTypes$])
-      .pipe(
-        filter((values) => values.every((value) => value.length)),
-        take(1)
-      )
+      .pipe(take(1))
       .subscribe(() => (this.isLoading = false));
   }
 
