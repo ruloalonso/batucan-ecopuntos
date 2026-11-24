@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../api.config';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Action } from '../models/action.model';
@@ -12,7 +13,7 @@ export class ActionService {
   actions = new BehaviorSubject<Action[]>([]);
   actions$ = this.actions.asObservable();
 
-  private apiUrl = 'https://batucan-ecopuntos-api.vercel.app/actions';
+  private apiUrl = API_BASE_URL + '/actions';
 
   constructor(private httpClient: HttpClient) {}
 
@@ -35,6 +36,19 @@ export class ActionService {
         this.actions.next([...actions, action]);
       })
     );
+  }
+
+  resetActions(
+    adminKey: string,
+    label: string
+  ): Observable<{ archived: number; deleted: number }> {
+    return this.httpClient
+      .post<{ archived: number; deleted: number }>(
+        this.apiUrl + '/reset',
+        { label },
+        { headers: { 'x-admin-key': adminKey } }
+      )
+      .pipe(tap(() => this.actions.next([])));
   }
 
   deleteAction(actionId: string): Observable<void> {

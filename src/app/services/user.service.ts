@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../api.config';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap, throwError } from 'rxjs';
 import { User } from '../models/user.model';
@@ -13,7 +14,7 @@ export class UserService {
   users$ = this.users.asObservable();
   error$ = this.error.asObservable();
 
-  private apiUrl = 'https://batucan-ecopuntos-api.vercel.app/users';
+  private apiUrl = API_BASE_URL + '/users';
 
   constructor(private httpClient: HttpClient) {}
 

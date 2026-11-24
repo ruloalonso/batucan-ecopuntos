@@ -1,0 +1,38 @@
+<h1>Empezar de cero</h1>
+
+<p>
+  Archiva y borra todas las acciones registradas (por ejemplo, al empezar un
+  curso nuevo). Los usuarios y los tipos de acción se mantienen.
+</p>
+
+<label for="reset-label">Etiqueta para el archivo (opcional):</label> <br />
+<input
+  pInputText
+  id="reset-label"
+  placeholder="Curso 2025-26"
+  [(ngModel)]="label"
+/>
+
+<br /><br />
+
+<label for="admin-key">Clave de administración:</label> <br />
+<p-password
+  inputId="admin-key"
+  [(ngModel)]="adminKey"
+  [feedback]="false"
+  [toggleMask]="true"
+/>
+
+<br /><br />
+
+<p-button
+  (click)="resetActions()"
+  label="Vaciar acciones"
+  severity="danger"
+  icon="pi pi-trash"
+  [loading]="loading"
+  [disabled]="!adminKey"
+/>
+
+<p *ngIf="result" class="result">{{ result }}</p>
+<p *ngIf="error" class="error">{{ error }}</p>
